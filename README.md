@@ -16,7 +16,9 @@ We do our best to limit the impact of the speed loss, by distributing the worklo
 2. Usage
 
 Usage: scent [-?V] [-e END] [-i INFILE] [-o OUTFILE] [-s START] [-t THREADS]
+
             [--end=END] [--infile=INFILE] [--outfile=OUTFILE] [--start=START]
+            
             [--threads=THREADS] [--help] [--usage] [--version]
 
   -e, --end=END              Restrict to vertices with index less than END
