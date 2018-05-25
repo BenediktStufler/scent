@@ -19,25 +19,30 @@ We do our best to limit the impact of the speed loss, by distributing the worklo
             [--end=END] [--infile=INFILE] [--outfile=OUTFILE] [--start=START]            
             [--threads=THREADS] [--help] [--usage] [--version]
 
-  -e, --end=END                     Restrict to vertices with index less than END
+  -e, --end=END                     
+  Restrict to vertices with index less than END
 
-  -i, --infile=INFILE               Read graphml input from INFILE instead of standard
-                                    input
-  -o, --outfile=OUTFILE             Output to OUTFILE instead of to standard output
+  -i, --infile=INFILE               
+  Read graphml input from INFILE instead of standard input
+  -o, --outfile=OUTFILE             
+  Output to OUTFILE instead of to standard output
 
-  -s, --start=START                 Restrict to vertices with index at least START
+  -s, --start=START                 
+  Restrict to vertices with index at least START
 
-  -t, --threads=THREADS             Distribute the workload on THREADS many threads
+  -t, --threads=THREADS             
+  Distribute the workload on THREADS many threads
 
-  -?, --help                        Give this help list
+  -?, --help                        
+  Give this help list
 
-  --usage                           Give a short usage message
+  --usage                           
+  Give a short usage message
 
-  -V, --version                     Print program version
+  -V, --version                     
+  Print program version
   
   
-
-
 3. Example
 
 scent -i example/test.graphml -t 4
