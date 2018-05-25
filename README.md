@@ -26,9 +26,10 @@ Usage: scent [-?V] [-e END] [-i INFILE] [-o OUTFILE] [-s START] [-t THREADS]
   -s, --start=START          Restrict to vertices with index at least START
   -t, --threads=THREADS      Distribute the workload on THREADS many threads
   -?, --help                 Give this help list
-      --usage                Give a short usage message
+  --usage                Give a short usage message
   -V, --version              Print program version
-
+  
+  
 
 
 3. Example
