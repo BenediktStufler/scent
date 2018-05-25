@@ -4,11 +4,11 @@ A simple approach to calculating the closeness centrality of vertices in a graph
 
 1. Introduction
 
-The closeness centrality C(v) of a vertex v in a graph G is the inverse of the average graph distance from this vertex to all other vertices.
+The closeness centrality of a vertex in a graph is the inverse of the average graph distance from this vertex to all other vertices.
 
-We want to calculate this for each vertex of a graph with a couple of million vertices. Time efficient algorithms exist but require too much memory. The main reason is that the entire distance matrix is calculated. Hence memory usage is quadratic in the number of vertices of the graph.
+We want to calculate the closeness centrality of each vertex in a graph with a couple of million vertices. Implementations of  algorithms that significantly reduce the number of calculations exist, but require too much memory. The main reason is that the entire distance matrix is calculated. Hence memory usage is quadratic in the number of vertices of the graph.
 
-For this reason we use a simple breadth-first-search based approach instead. This requires more calculations, about O(#vertices*(#vertices + #edges)). But memory usage is only linear in the number of vertices.
+For this reason we use a simple breadth-first-search based approach instead. This requires more calculations, but memory usage is only linear in the number of vertices.
 
 We do our best to limit the impact of the speed loss, by distributing the workload on multiple threads.
 
