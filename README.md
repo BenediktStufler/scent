@@ -10,7 +10,7 @@ We want to calculate this for each vertex of a graph with a couple of million ve
 
 For this reason we use a simple breadth-first-search based approach instead. This requires more calculations, about O(#vertices*(#vertices + #edges)). But memory usage is only linear in the number of vertices.
 
-We do our best to limit the impact of the speed loss by distributing the workload on multiple threads.
+We do our best to limit the impact of the speed loss, by distributing the workload on multiple threads.
 
 
 2. Usage
