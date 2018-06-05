@@ -9,8 +9,8 @@ const char *argp_program_bug_address =
 struct cmdarg
 {
     int threads;
-    int start;
-    int end;
+    INTN start;
+    INTN end;
     char *infile;
     char *outfile;
 };
@@ -49,10 +49,10 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             arguments->outfile = arg;
             break;
         case 's':
-            arguments->start = (int) strtoimax(arg, NULL, 10);
+            arguments->start = (INTN) strtoimax(arg, NULL, 10);
             break;
         case 'e':
-            arguments->end = (int) strtoimax(arg, NULL, 10);
+            arguments->end = (INTN) strtoimax(arg, NULL, 10);
             break;
         default:
             return ARGP_ERR_UNKNOWN;
