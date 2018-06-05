@@ -15,21 +15,21 @@ struct list {
 	
 struct vertex {
 	struct list *li;		// list of all neighbouring vertices
-	int id;					// unique id that will be used by the BFS search
+	INTN id;				// unique id that will be used by the BFS search
 							// the vertices in the graph are required to have
 							// ids 0,1,2,...	
-	int cent;				// sum of distances from this vertex to all others
+	INTD cent;				// sum of distances from this vertex to all others
 };
 
 struct graph {
-	int num;				// the number of vertices
+	INTN num;				// the number of vertices
 	struct vertex **arr;	// array with pointers to all vertices
 };
 
 
 // output closeness centrality of a segment of vertices
-int outcent(struct graph *G, int start, int end, char *outfile) {
-	int i;
+int outcent(struct graph *G, INTN start, INTN end, char *outfile) {
+	INTN i;
 	double num = (double) (G->num-1);
 	FILE *outstream;
 
@@ -68,7 +68,7 @@ int outcent(struct graph *G, int start, int end, char *outfile) {
 }
 
 void print_graph(struct graph *G) {
-	int i;
+	INTN i;
 	struct list *li;
 
 	printf("Number of vertices: %d\n", G->num);

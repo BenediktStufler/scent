@@ -23,7 +23,7 @@ struct elist {
 };
 
 struct vlist {
-	int id;
+	INTN id;
 	char *ident;
 	struct vlist *next;
 };
@@ -328,7 +328,7 @@ struct graph *parsegraphml(char *infile)
 		done = feof(instream);
 
 		if (XML_Parse(parser, Buff, len, done) == XML_STATUS_ERROR) {
-			fprintf(stderr, "Parse error at line %d: %s \n",
+			fprintf(stderr, "Parse error at line %lu: %s \n",
 							XML_GetCurrentLineNumber(parser),
 							XML_ErrorString(XML_GetErrorCode(parser)));
 			exit(-1);

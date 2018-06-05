@@ -44,6 +44,19 @@
 #include <inttypes.h>
 #include <expat.h>
 
+
+
+/*
+ * define the data types for large integers
+ * keep in mind that the data type int may occupy only 32bit on 64bit machines
+ *
+ * INTN: the data type that needs to be able to store the NUMBER of vertices
+ * INTD: the data type that needs to be able to store the sum of distances
+ *       from a single vertex to the rest
+ */
+#define INTN unsigned int
+#define INTD unsigned long long
+
 /*
  * provides a data structure that holds a graph
 */

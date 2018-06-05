@@ -10,15 +10,15 @@
 
 
 struct stat {
-	int status;		// determines if we already queued the vertex in the past
-	int dist;		// the distance of the vertex in the current BFS
+	INTN status;		// determines if we already queued the vertex in the past
+	INTD dist;		// the distance of the vertex in the current BFS
 };
 
 // data that gets passed to a thread
 struct gsegment {
 	struct graph *G;
-	int start;
-	int end;
+	INTN start;
+	INTN end;
 	int success;
 };
 
@@ -26,19 +26,19 @@ struct gsegment {
 // calculate closeness centrality of vertices with ids start, start+1, ..., end-1
 void *centrality(void *seg) {
 	struct graph *G = ((struct gsegment *)seg)->G;
-	int start = ((struct gsegment *)seg)->start;
-	int end = ((struct gsegment *)seg)->end;
+	INTN start = ((struct gsegment *)seg)->start;
+	INTN end = ((struct gsegment *)seg)->end;
 
 	struct stat *arr;		// array that holds status information
 	struct vertex **queue;	// we realize the queue as a static array to
 							// avoid repeated memory allocation & deallocation
 	struct vertex *v;		
 	struct list *li;
-	int i,j,k;
-	int num = G->num;		// number of vertices in our graph
-	int dist;
+	INTN i,j,k;
+	INTN num = G->num;		// number of vertices in our graph
+	INTD dist;
 
-	int pop;			// index for queue
+	INTN pop;			// index for queue
 
 	
 
@@ -106,12 +106,12 @@ void *centrality(void *seg) {
 	return (void *) 0;
 }
 
-int launchThreads(struct graph *G, int start, int end, int numThreads) {
-	int chunkSize;				// roughly how many vertices each thread
+int launchThreads(struct graph *G, INTN start, INTN end, INTN numThreads) {
+	INTN chunkSize;				// roughly how many vertices each thread
 								// has to take care of
 	struct gsegment *segList;	// arguments for the separate threads
 	pthread_t *th;				// array of threads
-	int i;
+	INTN i;
 	void *ret;
 	
 	/* divide the workload */

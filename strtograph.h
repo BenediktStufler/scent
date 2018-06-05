@@ -40,8 +40,8 @@ void push2bucket(struct bucket *B, struct vlist *vert) {
 }
 
 
-unsigned long djb2hash(unsigned char *str, int modulo) {
-	unsigned long hash = 5381;
+unsigned long long djb2hash(unsigned char *str, INTN modulo) {
+	unsigned long long hash = 5381;
 	int c;
 
 	while (c = *str++)
@@ -52,9 +52,9 @@ unsigned long djb2hash(unsigned char *str, int modulo) {
 
 // this function returns id of the vertex with identifier string *str
 // if such a vertex does not exist, it returns -1
-int getid(char *str, struct bucket *bucketlist, int len) {
+int getid(char *str, struct bucket *bucketlist, INTN len) {
 	struct vlist *v;
-	int bucketnumber = djb2hash(str,len);
+	INTN bucketnumber = djb2hash(str,len);
 
 	if(bucketnumber >= len) {
 		fprintf(stderr, "Error looking for a vertex in the hashmap.\n");	
@@ -67,8 +67,8 @@ int getid(char *str, struct bucket *bucketlist, int len) {
 	return -1;		// vertex not found
 }
 
-void emptybuckets(struct bucket *bucketlist, int len) {
-	int i;
+void emptybuckets(struct bucket *bucketlist, INTN len) {
+	INTN i;
 	struct vlist *v;
 	struct vlist *tmpv;
 
@@ -85,8 +85,8 @@ void emptybuckets(struct bucket *bucketlist, int len) {
 }
 
 struct bucket *ini_buckets(struct strgraph *H) {
-	int i;
-	int len = H->vend->id + 1;
+	INTN i;
+	INTN len = H->vend->id + 1;
 	struct vlist *v;
 	struct bucket *bucketlist;
 
@@ -114,10 +114,10 @@ struct graph *ini_graph(struct strgraph *H, struct bucket *bucketlist) {
 	struct graph *G;
 	struct elist *e;
 \
-	int i;
-	int source;
-	int target;
-	int len = H->vend->id + 1;
+	INTN i;
+	INTN source;
+	INTN target;
+	INTN len = H->vend->id + 1;
 
 
     // initialize graph
@@ -165,7 +165,7 @@ struct graph *ini_graph(struct strgraph *H, struct bucket *bucketlist) {
 struct graph *make_graph(struct strgraph *H) {
 	struct bucket *bucketlist;		// the hashmap
 	struct graph *G;
-	int len = H->vend->id + 1;
+	INTN len = H->vend->id + 1;
 
 
 	// sanity check: exit if graph is empty
