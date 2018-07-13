@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcc scent.c -O2 -o scent -lpthread -lexpat
+gcc scent.c -Wall -O2 -o scent -pthread -lexpat

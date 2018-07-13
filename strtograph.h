@@ -40,11 +40,11 @@ void push2bucket(struct bucket *B, struct vlist *vert) {
 }
 
 
-unsigned long long djb2hash(unsigned char *str, INTN modulo) {
+unsigned long long djb2hash(char *str, INTN modulo) {
 	unsigned long long hash = 5381;
 	int c;
 
-	while (c = *str++)
+	while ((c = *str++))
 		hash = ((hash << 5) + hash) + c; // hash*33 + c
 
 	return hash % modulo;

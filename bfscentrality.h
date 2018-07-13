@@ -32,9 +32,8 @@ void *centrality(void *seg) {
 	struct stat *arr;		// array that holds status information
 	struct vertex **queue;	// we realize the queue as a static array to
 							// avoid repeated memory allocation & deallocation
-	struct vertex *v;		
 	struct list *li;
-	INTN i,j,k;
+	INTN i,j;
 	INTN num = G->num;		// number of vertices in our graph
 	INTD dist;
 
@@ -113,20 +112,47 @@ int launchThreads(struct graph *G, INTN start, INTN end, INTN numThreads) {
 	pthread_t *th;				// array of threads
 	INTN i;
 	void *ret;
+	INTN *boxes;
 	
-	/* divide the workload */
-	chunkSize = (end - start) / numThreads;
-	if(chunkSize*numThreads < end - start) chunkSize++;
+    /* sanity checks */
+    if(numThreads <= 0) return -1;
+    if(end <= start) return 0;
+    if(G->num > end) return -1;
 
-	segList = calloc(sizeof(struct gsegment), numThreads);
-	for(i=0; i<numThreads-1; i++) {
-		segList[i].start = start + i * chunkSize;	
-		segList[i].end = start + (i+1) * chunkSize;	
-		segList[i].G = G;
-	}
-	segList[numThreads -1].start = chunkSize * (numThreads - 1);
-	segList[numThreads -1].end = end;
-	segList[numThreads -1].G = G;
+    /* divide the workload */
+    boxes = (INTN *) calloc(numThreads, sizeof(INTN));
+    segList = (struct gsegment *) calloc(numThreads, sizeof(struct gsegment));
+    if(boxes == NULL || segList == NULL) {
+        fprintf(stderr, "Error allocating memory in function threadedcentrality.\n");
+        exit(-1);
+    }
+
+    // end - start - numThreads + 1 <= numThreads * chunkSize <= end - start
+    chunkSize = (end - start) / numThreads;
+
+    // distribute (end - start) balls in numThreads boxes
+    // so that each box has roughly the same number of balls
+    for(i=0; i < numThreads; i++)
+        boxes[i] = chunkSize;
+    for(i=0; i < end - start - chunkSize*numThreads; i++)
+        boxes[i] += 1;
+
+    // "stack" the boxes
+    for(i=1; i < numThreads; i++)
+        boxes[i] += boxes[i-1];
+
+    // set segment
+    segList[0].start = 0;
+    segList[0].end = boxes[0];
+    segList[0].G = G;
+    for(i=1; i<numThreads; i++) {
+        segList[i].start = boxes[i-1];
+        segList[i].end = boxes[i];
+        segList[i].G = G;
+    }
+
+    free(boxes);
+
 
 
 	/* launch threads */	
