@@ -54,12 +54,13 @@ int outcent(struct graph *G, INTN start, INTN end, char *outfile) {
     }
 
 	// output closeness centrality of vertices
-	fprintf(outstream, "{");
+//	fprintf(outstream, "{");
 	for(i=start; i<end-1; i++) {
 		fprintf(outstream, "%17.17f, ", num / (double) G->arr[i]->cent);	
 	}
 	fprintf(outstream, "%17.17f", num / (double) G->arr[end-1]->cent);	
-	fprintf(outstream, "}\n");
+	//fprintf(outstream, "}\n");
+
 
 	// close file if necessary
 	if(outfile != NULL) fclose(outstream);	

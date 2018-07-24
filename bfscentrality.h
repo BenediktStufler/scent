@@ -138,11 +138,12 @@ int launchThreads(struct graph *G, INTN start, INTN end, INTN numThreads) {
         boxes[i] += 1;
 
     // "stack" the boxes
+	boxes[0] += start;
     for(i=1; i < numThreads; i++)
         boxes[i] += boxes[i-1];
 
     // set segment
-    segList[0].start = 0;
+    segList[0].start = start;
     segList[0].end = boxes[0];
     segList[0].G = G;
     for(i=1; i<numThreads; i++) {
@@ -152,7 +153,6 @@ int launchThreads(struct graph *G, INTN start, INTN end, INTN numThreads) {
     }
 
     free(boxes);
-
 
 
 	/* launch threads */	
