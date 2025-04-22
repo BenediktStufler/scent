@@ -1,6 +1,6 @@
 /*
  * scent - a simple approach for calculating the closeness centrality
- *         of vertices in a graph
+ *		 of vertices in a graph
  *
  * The closeness centrality C(v) of a vertex v in a graph G is the inverse of 
  * the average graph distance from this vertex to all other vertices.
@@ -16,20 +16,20 @@
  *
  * We do our best to limit the impact of the speed loss by distributing the
  * workload on multiple threads.
-    Copyright (C) 2018 Benedikt Stufler
+	Copyright (C) 2018 Benedikt Stufler
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 
@@ -52,7 +52,7 @@
  *
  * INTN: the data type that needs to be able to store the NUMBER of vertices
  * INTD: the data type that needs to be able to store the sum of distances
- *       from a single vertex to the rest
+ *	   from a single vertex to the rest
  */
 #define INTN unsigned int
 #define INTD unsigned long long

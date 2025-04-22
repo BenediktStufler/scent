@@ -13,30 +13,30 @@ struct bucket {
 void push2bucket(struct bucket *B, struct vlist *vert) {
 	struct vlist *v;
 
-    // create copy of vertex
-    v = (struct vlist *) malloc(sizeof(struct vlist));
-    if(v == NULL) {
-        fprintf(stderr, "Error allocating memory for hashmap");
-        exit(-1);
-    }
-    v->next = NULL;
-    v->ident = (char *) malloc(sizeof(char)*(strlen(vert->ident) + 1));
-    if(v->ident == NULL) {
-        fprintf(stderr, "Error allocating memory for hashmap.\n");
-        exit(-1);
-    }
-    strcpy(v->ident, vert->ident);
+	// create copy of vertex
+	v = (struct vlist *) malloc(sizeof(struct vlist));
+	if(v == NULL) {
+		fprintf(stderr, "Error allocating memory for hashmap");
+		exit(-1);
+	}
+	v->next = NULL;
+	v->ident = (char *) malloc(sizeof(char)*(strlen(vert->ident) + 1));
+	if(v->ident == NULL) {
+		fprintf(stderr, "Error allocating memory for hashmap.\n");
+		exit(-1);
+	}
+	strcpy(v->ident, vert->ident);
 	v->id = vert->id;
 
 
-    // put vertex into bucket
-    if(B->vstart == NULL) {
-        B->vstart = v;
-        B->vend = v;
-    } else {
-        B->vend->next = v;
-        B->vend = v;
-    }
+	// put vertex into bucket
+	if(B->vstart == NULL) {
+		B->vstart = v;
+		B->vend = v;
+	} else {
+		B->vend->next = v;
+		B->vend = v;
+	}
 }
 
 
@@ -120,32 +120,32 @@ struct graph *ini_graph(struct strgraph *H, struct bucket *bucketlist) {
 	INTN len = H->vend->id + 1;
 
 
-    // initialize graph
-    G = (struct graph *) malloc(sizeof(struct graph));
-    varr = (struct vertex **) calloc(sizeof(struct vertex *), len);
-    if(G == NULL || varr==NULL) {
-        fprintf(stderr, "Memory allocation error trying to build the graph.\n");
-        exit(-1);
-    }
+	// initialize graph
+	G = (struct graph *) malloc(sizeof(struct graph));
+	varr = (struct vertex **) calloc(sizeof(struct vertex *), len);
+	if(G == NULL || varr==NULL) {
+		fprintf(stderr, "Memory allocation error trying to build the graph.\n");
+		exit(-1);
+	}
 	G->arr = varr;
 	G->num = len;
 
 	// initialize vertices	
 	for(i=0; i<len; i++) {
-        varr[i] = (struct vertex *) malloc(sizeof(struct vertex));
-        if(varr[i] == NULL) {
-            fprintf(stderr, "Memory allocation error trying to build the graph.\n");
-            exit(-1);
-        }
-        varr[i]->id = i;
-        varr[i]->li = (struct list *) malloc(sizeof(struct list));
-        if(varr[i]->li == NULL) {
-            fprintf(stderr, "Memory allocation error trying to build the graph.\n");
-            exit(-1);
-        }
-        varr[i]->li->ve = NULL;
-        varr[i]->li->ne = NULL;
-    }
+		varr[i] = (struct vertex *) malloc(sizeof(struct vertex));
+		if(varr[i] == NULL) {
+			fprintf(stderr, "Memory allocation error trying to build the graph.\n");
+			exit(-1);
+		}
+		varr[i]->id = i;
+		varr[i]->li = (struct list *) malloc(sizeof(struct list));
+		if(varr[i]->li == NULL) {
+			fprintf(stderr, "Memory allocation error trying to build the graph.\n");
+			exit(-1);
+		}
+		varr[i]->li->ve = NULL;
+		varr[i]->li->ne = NULL;
+	}
 
 	// add edges	
 	for(e = H->estart; e!= NULL; e = e->next) {

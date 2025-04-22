@@ -43,15 +43,15 @@ int outcent(struct graph *G, INTN start, INTN end, char *outfile) {
 	}
 
 	// open output file if necessary
-    if(outfile == NULL) {
-        outstream = stdout;
-    } else {
-        outstream = fopen(outfile, "w");
-        if(outstream == NULL) {
-            fprintf(stderr, "Error opening output file.\n");
-            exit(-1);
-        }
-    }
+	if(outfile == NULL) {
+		outstream = stdout;
+	} else {
+		outstream = fopen(outfile, "w");
+		if(outstream == NULL) {
+			fprintf(stderr, "Error opening output file.\n");
+			exit(-1);
+		}
+	}
 
 	// output closeness centrality of vertices
 //	fprintf(outstream, "{");
@@ -118,11 +118,11 @@ int addEdge(struct vertex *v, struct vertex *w) {
 
 /* function for building the following example graph
  *
- *       /-- 2 -- 5
- *      /    |
+ *	   /-- 2 -- 5
+ *	  /	|
  * 0 -- 1 -- 3
- * 	    \    |
- *       \-- 4
+ * 		\	|
+ *	   \-- 4
  *
  */
 struct graph *iniGraphExample() {
